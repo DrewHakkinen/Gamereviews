@@ -34,6 +34,8 @@ public class GamereviewsApplication {
 			Game game3 = new Game("Inscryption", "Daniel Mullins Games", 19.99, 2021,
 					genreRepository.findByName("Horror").get(0));
 			gameRepository.save(game3); // SQL INSERT
+			Game game4 = new Game("GTA IV", "Rockstar", 24.50, 2009, genreRepository.findByName("Action").get(0));
+			gameRepository.save(game4);
 		};
 	}
 

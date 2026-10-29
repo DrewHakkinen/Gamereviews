@@ -1,5 +1,8 @@
 package hh.backend.gamereviews.domain;
 
-public interface AppUserRepository {
+import org.springframework.data.repository.CrudRepository;
 
+public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
+
+    AppUser findByUsername(String username);
 }

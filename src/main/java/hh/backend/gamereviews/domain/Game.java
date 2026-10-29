@@ -1,9 +1,13 @@
 package hh.backend.gamereviews.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +25,10 @@ public class Game {
     private Double price;
     private Integer publicationYear;
 
+    @ManyToOne
+    // @JsonIgnoreProperties
+    @JsonIgnoreProperties("getgames")
+    @JoinColumn(name = "genreid")
     private Genre genre;
 
     // konstruktorit

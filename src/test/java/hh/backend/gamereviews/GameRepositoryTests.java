@@ -2,6 +2,8 @@ package hh.backend.gamereviews;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
@@ -17,10 +19,27 @@ public class GameRepositoryTests {
 
     @Test
     public void findByTitleShouldReturnGame() {
-        Game game = new Game("GTA IV", "Rockstar", 15.50, 2009, null);
+        List<Game> games = gameRepository.findByTitle("GTA IV");
+        assertThat(games).hasSize(1);
+        assertThat(games.get(0).getDeveloper()).isEqualTo("Rockstar");
+    }
+
+    @Test
+    public void createNewGame() {
+        Game game = new Game("Creature Kitchen", "The Rat Zone", 7.79, 2026, null);
         gameRepository.save(game);
 
-        List<Game> games = gameRepository.findByTitle(null);
+        assertThat(game.getGameId()).isNotNull();
+    }
+
+    @Test
+    public void deleteGame() {
+        Game game = new Game("Creature Kitchen", "The Rat Zone", 7.79, 2026, null);
+        gameRepository.save(game);
+
+        gameRepository.delete(game);
+
+        assertThat(gameRepository.findByTitle("Creature Kitchen")).isEmpty();
     }
 
 }
