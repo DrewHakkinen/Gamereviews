@@ -23,7 +23,11 @@ public class AppUser {
     @Column(name = "role", nullable = false)
     private String role;
 
+    public AppUser() {
+    }
+
     public AppUser(String username, String passwordHash, String role) {
+        super();
         this.username = username;
         this.passwordHash = passwordHash;
         this.role = role;
