@@ -46,13 +46,4 @@ public class GenreController {
         return "redirect:/genrelist"; // endpoint
     }
 
-    // Genren poisto
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public String deleteGenre(@PathVariable("id") Integer genreId, Model model) {
-
-        genreRepository.deleteById(genreId); // SQL DELETE
-        return "redirect:/genrelist"; // endpoint
-    }
-
 }

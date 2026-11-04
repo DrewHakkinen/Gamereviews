@@ -36,7 +36,7 @@ public class GamereviewsApplication {
 			genreRepository.save(new Genre("Horror"));
 
 			// Pelit
-			Game game1 = new Game("Mafia II", "2K Czech", 29.99, 2011, genreRepository.findByName("Action").get(0));
+			Game game1 = new Game("Mafia II", "2K Czech", 29.99, 2010, genreRepository.findByName("Action").get(0));
 			gameRepository.save(game1); // SQL INSERT
 			Game game2 = new Game("Stardew Valley", "Concerned Ape", 13.99, 2016,
 					genreRepository.findByName("Adventure").get(0));

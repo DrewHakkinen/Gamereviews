@@ -18,7 +18,7 @@ public class Genre {
     // attribuutit
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int genreId;
+    private Integer genreId;
 
     private String name;
 
@@ -37,7 +37,7 @@ public class Genre {
     }
 
     // Setterit
-    public void setGenreId(int genreId) {
+    public void setGenreId(Integer genreId) {
         this.genreId = genreId;
     }
 
@@ -50,7 +50,7 @@ public class Genre {
     }
 
     // Getterit
-    public int getGenreId() {
+    public Integer getGenreId() {
         return genreId;
     }
 
