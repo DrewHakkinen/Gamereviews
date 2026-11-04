@@ -1,6 +1,9 @@
 package hh.backend.gamereviews;
 
 import hh.backend.gamereviews.domain.AppUserRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +17,8 @@ import hh.backend.gamereviews.domain.GenreRepository;
 
 @SpringBootApplication
 public class GamereviewsApplication {
+
+	private static final Logger log = LoggerFactory.getLogger(GamereviewsApplication.class);
 
 	private final AppUserRepository appUserRepository;
 
@@ -29,12 +34,14 @@ public class GamereviewsApplication {
 	@Bean
 	public CommandLineRunner demo(GameRepository gameRepository, GenreRepository genreRepository) {
 		return (args) -> {
+			log.info("Save some genres");
 			// Genret
 			genreRepository.save(new Genre("Action"));
 			genreRepository.save(new Genre("Adventure"));
 			genreRepository.save(new Genre("Simulation"));
 			genreRepository.save(new Genre("Horror"));
 
+			log.info("Save some sample games");
 			// Pelit
 			Game game1 = new Game("Mafia II", "2K Czech", 29.99, 2010, genreRepository.findByName("Action").get(0));
 			gameRepository.save(game1); // SQL INSERT
@@ -47,6 +54,7 @@ public class GamereviewsApplication {
 			Game game4 = new Game("GTA IV", "Rockstar", 24.50, 2009, genreRepository.findByName("Action").get(0));
 			gameRepository.save(game4);
 
+			log.info("Save sample users");
 			// Käyttäjät
 			AppUser user1 = new AppUser("Maija", "$2a$10$cmAb.uXySswCjKy.gSFc2eNtKXI6wJrNHY9M9qPfxcttjVCGmpvfi",
 					"USER");
@@ -54,6 +62,16 @@ public class GamereviewsApplication {
 			AppUser user2 = new AppUser("Matti", "$2a$10$/iNW96f6LHQUx3Z2G6OG.OOWSpl4YDkcUbkxg.fpCSVSCxuCIpKFC",
 					"ADMIN");
 			appUserRepository.save(user2);
+
+			log.info("Fetch all the genres");
+			for (Genre genre : genreRepository.findAll()) {
+				log.info(genre.toString());
+			}
+
+			log.info("Fetch all the games");
+			for (Game game : gameRepository.findAll()) {
+				log.info(game.toString());
+			}
 		};
 	}
 

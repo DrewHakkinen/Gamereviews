@@ -17,7 +17,12 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/css/**").permitAll() // css enabled when logged out
+                        .requestMatchers("/h2-console/**").permitAll() // h2-consoleen pääsee
                         .anyRequest().authenticated())
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/h2-console/**"))
+                .headers(headers -> headers
+                        .frameOptions(frame -> frame.sameOrigin()))
                 .formLogin(formlogin -> formlogin
                         .defaultSuccessUrl("/gamelist", true)
                         .permitAll())

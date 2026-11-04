@@ -27,7 +27,7 @@ public class Game {
 
     @ManyToOne
     // @JsonIgnoreProperties
-    @JsonIgnoreProperties("getgames")
+    @JsonIgnoreProperties("games")
     @JoinColumn(name = "genreid")
     private Genre genre;
 
