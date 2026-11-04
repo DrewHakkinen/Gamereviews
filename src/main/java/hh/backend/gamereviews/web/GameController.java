@@ -70,6 +70,7 @@ public class GameController {
 
     // Pelin editointi
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String editGame(@PathVariable("id") Integer gameId, Model model) {
 
         model.addAttribute("game", gameRepository.findById(gameId).get());

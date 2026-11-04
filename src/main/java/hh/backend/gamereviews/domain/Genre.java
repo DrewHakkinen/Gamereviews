@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +22,7 @@ public class Genre {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
+    @OneToMany()
     // @JsonIgnore
     @JsonIgnoreProperties("genre")
     private List<Game> games;
