@@ -34,6 +34,7 @@ public class GenreController {
 
     // Tyhjän lomakkeen muodostaminen
     @GetMapping("/newgenre")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String getNewcategoryForm(Model model) {
         model.addAttribute("genre", new Genre());
         return "addgenre"; // addgenre.html
@@ -44,6 +45,15 @@ public class GenreController {
     public String saveGenre(@ModelAttribute Genre genre, Model model) {
         genreRepository.save(genre);
         return "redirect:/genrelist"; // endpoint
+    }
+
+    // Genren editointi
+    @RequestMapping(value = "/editgenre/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String editGenre(@PathVariable("id") Integer genreId, Model model) {
+
+        model.addAttribute("genre", genreRepository.findById(genreId).get());
+        return "editgenre"; // editgenre.html
     }
 
 }

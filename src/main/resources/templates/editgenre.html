@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Genre</title>
+</head>
+
+<body>
+    <h1>Edit Genre</h1>
+    <form method="post" action="#" th:action="@{/savegenre}" th:object=${genre}>
+        <input type="hidden" th:field="*{genreId}" />
+        <p>Genre: <input type="text" th:field="*{name}" /></p>
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+
+</html>

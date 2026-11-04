@@ -20,7 +20,7 @@
         <tr th:each="genre : ${genres}">
             <td th:text="${genre.name}">Name</td>
             <td sec:authorize="hasAuthority('ADMIN')">
-                <a class="btn btn-danger" th:href="@{/delete/{id}(id=${genre.genreId})}">Delete Genre</a>
+                <a class="btn btn-success" th:href="@{/editgenre/{id}(id=${genre.genreId})}">Edit Genre</a>
             </td>
         </tr>
     </table>
