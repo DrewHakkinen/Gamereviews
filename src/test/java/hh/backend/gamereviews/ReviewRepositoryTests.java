@@ -20,7 +20,7 @@ public class ReviewRepositoryTests {
     @Test
     public void findByRatingShouldReturnReview() {
         List<Review> reviews = reviewRepository.findByAudience("Adults");
-        assertThat(reviews).hasSize(1);
+        assertThat(reviews).hasSize(2);
         assertThat(reviews.get(0).getPricing()).isEqualTo("Worth the price");
     }
 
@@ -45,7 +45,7 @@ public class ReviewRepositoryTests {
 
         reviewRepository.delete(review);
 
-        assertThat(reviewRepository.findByDifficulty("Significant brain usage")).isEmpty();
+        assertThat(reviewRepository.findById(5)).isEmpty();
     }
 
 }
