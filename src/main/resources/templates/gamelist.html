@@ -31,6 +31,7 @@
             <th>Price</th>
             <th>Genre</th>
             <th sec:authorize="hasAuthority('ADMIN')"> </th>
+            <th></th>
         </tr>
 
         <tr th:each="game : ${games}">
@@ -42,11 +43,17 @@
             <td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger"
                     th:href="@{/delete/{id}(id=${game.gameId})}">Delete Game</a></td>
             <td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-success"
-                    th:href="@{/edit/{id}(id=${game.gameId})}">Edit Game</a></td>
+                    th:href="@{/edit/{id}(id=${game.gameId})}">Edit Game</a>
+            </td>
+            <td><a class="btn btn-success" th:href="@{/reviewlist/{id}(id=${game.gameId})}">
+                    See reviews
+                </a>
+            </td>
         </tr>
     </table>
     <p sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-success" th:href="@{/newgame}">Add Game</a></p>
     <p><a class="btn btn-success" th:href="@{/genrelist}">See genres</a></p>
+    <p><a class="btn btn-success" th:href="@{/reviewlist}">See reviews</a></p>
 </body>
 
 </html>

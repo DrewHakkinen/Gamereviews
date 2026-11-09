@@ -14,6 +14,8 @@ import hh.backend.gamereviews.domain.Game;
 import hh.backend.gamereviews.domain.GameRepository;
 import hh.backend.gamereviews.domain.Genre;
 import hh.backend.gamereviews.domain.GenreRepository;
+import hh.backend.gamereviews.domain.Review;
+import hh.backend.gamereviews.domain.ReviewRepository;
 
 @SpringBootApplication
 public class GamereviewsApplication {
@@ -32,7 +34,8 @@ public class GamereviewsApplication {
 
 	// Testidataa tietokantaan
 	@Bean
-	public CommandLineRunner demo(GameRepository gameRepository, GenreRepository genreRepository) {
+	public CommandLineRunner demo(GameRepository gameRepository, GenreRepository genreRepository,
+			ReviewRepository reviewRepository) {
 		return (args) -> {
 			log.info("Save some genres");
 			// Genret
@@ -54,6 +57,13 @@ public class GamereviewsApplication {
 			Game game4 = new Game("GTA IV", "Rockstar", 24.50, 2009, genreRepository.findByName("Action").get(0));
 			gameRepository.save(game4);
 
+			log.info("Save some sample reviews");
+			// Palautteet
+			Review review1 = new Review("Beautiful", "Good", "Very good", "Potato", "Easy to learn / hard to master",
+					"Nothing to grind", "Lovely", "Not bad duration (12-20 hours)", "Worth the price",
+					"Can get annoying", "Adults", 10, gameRepository.findByTitle("Mafia II").get(0));
+			reviewRepository.save(review1);
+
 			log.info("Save sample users");
 			// Käyttäjät
 			AppUser user1 = new AppUser("Maija", "$2a$10$cmAb.uXySswCjKy.gSFc2eNtKXI6wJrNHY9M9qPfxcttjVCGmpvfi",
@@ -71,6 +81,11 @@ public class GamereviewsApplication {
 			log.info("Fetch all the games");
 			for (Game game : gameRepository.findAll()) {
 				log.info(game.toString());
+			}
+
+			log.info("Fetch all the reviews");
+			for (Review review : reviewRepository.findAll()) {
+				log.info(review.toString());
 			}
 		};
 	}

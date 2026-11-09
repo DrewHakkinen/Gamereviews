@@ -1,14 +1,12 @@
 package hh.backend.gamereviews.domain;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -21,6 +19,7 @@ public class Review {
     private String graphics;
     private String gameplay;
     private String audio;
+    private String audience;
     private String pcRequirements;
     private String difficulty;
     private String grind;
@@ -28,18 +27,17 @@ public class Review {
     private String gameLength;
     private String pricing;
     private String bugs;
-    private String audience;
     private Integer rating;
 
-    @ManyToMany()
+    @ManyToOne()
     // @JsonIgnoreProperties
     @JsonIgnoreProperties("review")
-    private List<Game> games;
+    private Game game;
 
     // konstruktorit
     public Review(String graphics, String gameplay, String audio, String pcRequirements, String difficulty,
             String grind, String story, String gameLength, String pricing, String bugs, String audience,
-            Integer rating) {
+            Integer rating, Game game) {
         this.graphics = graphics;
         this.gameplay = gameplay;
         this.audio = audio;
@@ -52,6 +50,7 @@ public class Review {
         this.bugs = bugs;
         this.audience = audience;
         this.rating = rating;
+        this.game = game;
     }
 
     public Review() {
@@ -111,8 +110,8 @@ public class Review {
         this.rating = rating;
     }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     // Getterit
@@ -168,17 +167,17 @@ public class Review {
         return rating;
     }
 
-    public List<Game> getGames() {
-        return games;
+    public Game getGame() {
+        return game;
     }
 
-    // toString (ei list:iä mukaan)
+    // toString
     @Override
     public String toString() {
         return "Review [reviewId=" + reviewId + ", graphics=" + graphics + ", gameplay=" + gameplay + ", audio=" + audio
-                + ", pcRequirements=" + pcRequirements + ", difficulty=" + difficulty + ", grind=" + grind + ", story="
-                + story + ", gameLength=" + gameLength + ", pricing=" + pricing + ", bugs=" + bugs + ", audience="
-                + audience + ", rating=" + rating + "]";
+                + ", audience=" + audience + ", pcRequirements=" + pcRequirements + ", difficulty=" + difficulty
+                + ", grind=" + grind + ", story=" + story + ", gameLength=" + gameLength + ", pricing=" + pricing
+                + ", bugs=" + bugs + ", rating=" + rating + ", game=" + game + "]";
     }
 
 }
