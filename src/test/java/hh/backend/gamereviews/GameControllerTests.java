@@ -6,11 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import hh.backend.gamereviews.web.GameController;
+
 @SpringBootTest
 public class GameControllerTests {
 
     @Autowired
-    private GameControllerTests gameController;
+    private GameController gameController;
 
     @Test
     public void contextLoads() {
