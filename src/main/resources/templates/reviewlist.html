@@ -5,11 +5,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews</title>
+    <title>Game Reviews</title>
 </head>
 
 <body>
 
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8">
+                <h1 th:text="'Reviews for ' + ${game.title}">Game Reviews</h1>
+            </div>
+        </div>
+
+        <div th:each="review : ${reviews}" class="card mb-4">
+            <div class="card-header">
+                <h3>
+                    Review
+                    <span class="badge bg-success" th:text="${review.rating} + '/10'">Rating</span>
+                </h3>
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Graphics:</strong>
+                            <span th:text="${review.graphics}"></span>
+                        </p>
+
+                        <p><strong>Gameplay:</strong>
+                            <span th:text="${review.gameplay}"></span>
+                        </p>
+
+                        <p><strong>Audio:</strong>
+                            <span th:text="${review.audio}"></span>
+                        </p>
+
+                        <p><strong>Story:</strong>
+                            <span th:text="${review.story}"></span>
+                        </p>
+
+                        <p><strong>Difficulty:</strong>
+                            <span th:text="${review.difficulty}"></span>
+                        </p>
+
+                        <p><strong>Game Length:</strong>
+                            <span th:text="${review.gameLength}"></span>
+                        </p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <p><strong>PC Requirements:</strong>
+                            <span th:text="${review.pcRequirements}"></span>
+                        </p>
+
+                        <p><strong>Grind:</strong>
+                            <span th:text="${review.grind}"></span>
+                        </p>
+
+                        <p><strong>Pricing:</strong>
+                            <span th:text="${review.pricing}"></span>
+                        </p>
+
+                        <p><strong>Bugs:</strong>
+                            <span th:text="${review.bugs}"></span>
+                        </p>
+
+                        <p><strong>Audience:</strong>
+                            <span th:text="${review.audience}"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <a class="btn btn-danger" th:href="@{/deletereview/{id}(id=${review.reviewId})}">
+                        Delete Review
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <p>
+            <a th:href="@{/newreview/{id}(id=${game.gameId})}" class="btn btn-success">
+                Add Review
+            </a>
+        </p>
+        <p>
+            <a class="btn btn-success" th:href="@{/gamelist}">See Games</a>
+        </p>
+
+    </div>
 
 
 </body>

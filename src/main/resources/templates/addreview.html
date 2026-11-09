@@ -8,112 +8,180 @@
 </head>
 
 <body>
-    <h1>New Review</h1>
-    <form method="post" action="#" th:action="@{/savereview}" th:object=${review}>
-        <select name="Graphics" th:field="*{graphics}" class="form-control">
-            <option value="You forget what reality is">You forget what reality is</option>
-            <option value="Beautiful">Beautiful</option>
-            <option value="Good">Good</option>
-            <option value="Decent">Decent</option>
-            <option value="Bad">Bad</option>
-            <option value="Don't look too long at it">Don't look too long at it</option>
-        </select>
-        <select name="Gameplay" th:field="*{gameplay}" class="form-control">
-            <option value="Very good">Very good</option>
-            <option value="Good">Good</option>
-            <option value="It's just gameplay">It's just gameplay</option>
-            <option value="Meh">Meh</option>
-            <option value="Watch paint dry instead">Watch paint dry instead</option>
-            <option value="Just don't">Just don't</option>
-        </select>
-        <select name="Audio" th:field="*{audio}" class="form-control">
-            <option value="Eargasm">Eargasm</option>
-            <option value="Very good">Very good</option>
-            <option value="Good">Good</option>
-            <option value="Not too bad">Not too bad</option>
-            <option value="Bad">Bad</option>
-            <option value="I'm now deaf">I'm now deaf</option>
-        </select>
-        <select name="Audience" th:field="*{audience}" class="form-control">
-            <option value="Kids">Kids</option>
-            <option value="Teens">Teens</option>
-            <option value="Adults">Adults</option>
-            <option value="All">All</option>
-        </select>
-        <select name="PC Requirements" th:field="*{pcRequirements}" class="form-control">
-            <option value="Check if you can run paint">Check if you can run paint</option>
-            <option value="Potato">Potato</option>
-            <option value="Decent">Decent</option>
-            <option value="Fast">Fast</option>
-            <option value="Rich boi">Rich boi</option>
-            <option value="Ask NASA if they have a spare computer">Ask NASA if they have a spare computer</option>
-        </select>
-        <select name="Difficulty" th:field="*{difficulty}" class="form-control">
-            <option value="Just press 'W'">Just press 'W'</option>
-            <option value="Easy">Easy</option>
-            <option value="Easy to learn / hard to master">Easy to learn / hard to master</option>
-            <option value="Significant brain usage">Significant brain usage</option>
-            <option value="Difficult">Difficult</option>
-            <option value="Dark Souls">Dark Souls</option>
-        </select>
-        <select name="Grind" th:field="*{grind}" class="form-control">
-            <option value="Nothing to grind">Nothing to grind</option>
-            <option value="Only if you care about leaderboards/ranks">Only if you care about leaderboards/ranks</option>
-            <option value="Isn't necessary to progress">Isn't necessary to progress</option>
-            <option value="Average grind level">Average grind level</option>
-            <option value="Too much grind">Too much grind</option>
-            <option value="You'll need a second life for grinding">You'll need a second life for grinding</option>
-        </select>
-        <select name="Story" th:field="*{story}" class="form-control">
-            <option value="No story">No story</option>
-            <option value="Some lore">Some lore</option>
-            <option value="Average">Average</option>
-            <option value="Good">Good</option>
-            <option value="Lovely">Lovely</option>
-            <option value="It'll replace your life">It'll replace your life</option>
-        </select>
-        <select name="Game Length" th:field="*{gameLength}" class="form-control">
-            <option value="Short (0-8 hours)">Short (0-8 hours)</option>
-            <option value="Few hours (8-12)">Few hours (8-12)</option>
-            <option value="Not bad duration (12-20)">Not bad duration (12-20)</option>
-            <option value="Long (20-50)">Long (20-50)</option>
-            <option value="Very long (50-100)">Very long (50-100)</option>
-            <option value="Endless">Endless</option>
-        </select>
-        <select name="Price" th:field="*{pricing}" class="form-control">
-            <option value="It's free!">It's free!</option>
-            <option value="Worth the price">Worth the price</option>
-            <option value="If it's on sale">If it's on sale</option>
-            <option value="If you have some spare money left">If you have some spare money left</option>
-            <option value="Not recommended">Not recommended</option>
-            <option value="You could also just burn your money">You could also just burn your money</option>
-        </select>
-        <select name="Bugs" th:field="*{bugs}" class="form-control">
-            <option value="Never heard of">Never heard of</option>
-            <option value="Minor bugs">Minor bugs</option>
-            <option value="Can get annoying">Can get annoying</option>
-            <option value="The game itself is a big terrarium for bugs">The game itself is a big terrarium for bugs
-            </option>
-        </select>
-        <select name="Rating" th:field="*{rating}" class="form-control">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
-        <label for="gamlist">Game</label>
-        <select id="gamlist" th:field="*{game}" class="form-control">
-            <option th:each="game: ${games}" th:value="${game.gameId}" th:text="${game.title}">
-            </option>
-        </select>
-        <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
-    </form>
+    <div class="container mt-4">
+        <h1 class="mb-4">New Review</h1>
+
+        <form method="post" action="#" th:action="@{/savereview}" th:object="${review}">
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="gralist" class="form-label">Graphics:</label>
+                    <select id="gralist" th:field="*{graphics}" class="form-control">
+                        <option value="You forget what reality is">You forget what reality is</option>
+                        <option value="Beautiful">Beautiful</option>
+                        <option value="Good">Good</option>
+                        <option value="Decent">Decent</option>
+                        <option value="Bad">Bad</option>
+                        <option value="Don't look too long at it">Don't look too long at it</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="gplist" class="form-label">Gameplay:</label>
+                    <select id="gplist" th:field="*{gameplay}" class="form-control">
+                        <option value="Very good">Very good</option>
+                        <option value="Good">Good</option>
+                        <option value="It's just gameplay">It's just gameplay</option>
+                        <option value="Meh">Meh</option>
+                        <option value="Watch paint dry instead">Watch paint dry instead</option>
+                        <option value="Just don't">Just don't</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="Aulist" class="form-label">Audio:</label>
+                    <select id="Aulist" th:field="*{audio}" class="form-control">
+                        <option value="Eargasm">Eargasm</option>
+                        <option value="Very good">Very good</option>
+                        <option value="Good">Good</option>
+                        <option value="Not too bad">Not too bad</option>
+                        <option value="Bad">Bad</option>
+                        <option value="I'm now deaf">I'm now deaf</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="Aelist" class="form-label">Audience:</label>
+                    <select id="Aelist" th:field="*{audience}" class="form-control">
+                        <option value="Kids">Kids</option>
+                        <option value="Teens">Teens</option>
+                        <option value="Adults">Adults</option>
+                        <option value="All">All</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="pclist" class="form-label">PC Requirements:</label>
+                    <select id="pclist" th:field="*{pcRequirements}" class="form-control">
+                        <option value="Check if you can run paint">Check if you can run paint</option>
+                        <option value="Potato">Potato</option>
+                        <option value="Decent">Decent</option>
+                        <option value="Fast">Fast</option>
+                        <option value="Rich boi">Rich boi</option>
+                        <option value="Ask NASA if they have a spare computer">Ask NASA if they have a spare computer
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="Dilist" class="form-label">Difficulty:</label>
+                    <select id="Dilist" th:field="*{difficulty}" class="form-control">
+                        <option value="Just press 'W'">Just press 'W'</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Easy to learn / hard to master">Easy to learn / hard to master</option>
+                        <option value="Significant brain usage">Significant brain usage</option>
+                        <option value="Difficult">Difficult</option>
+                        <option value="Dark Souls">Dark Souls</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="grlist" class="form-label">Grind:</label>
+                    <select id="grlist" th:field="*{grind}" class="form-control">
+                        <option value="Nothing to grind">Nothing to grind</option>
+                        <option value="Only if you care about leaderboards/ranks">Only if you care about
+                            leaderboards/ranks</option>
+                        <option value="Isn't necessary to progress">Isn't necessary to progress</option>
+                        <option value="Average grind level">Average grind level</option>
+                        <option value="Too much grind">Too much grind</option>
+                        <option value="You'll need a second life for grinding">You'll need a second life for grinding
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="stlist" class="form-label">Story:</label>
+                    <select id="stlist" th:field="*{story}" class="form-control">
+                        <option value="No story">No story</option>
+                        <option value="Some lore">Some lore</option>
+                        <option value="Average">Average</option>
+                        <option value="Good">Good</option>
+                        <option value="Lovely">Lovely</option>
+                        <option value="It'll replace your life">It'll replace your life</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="galelist" class="form-label">Game Length:</label>
+                    <select id="galelist" th:field="*{gameLength}" class="form-control">
+                        <option value="Short (0-8 hours)">Short (0-8 hours)</option>
+                        <option value="Few hours (8-12)">Few hours (8-12)</option>
+                        <option value="Not bad duration (12-20)">Not bad duration (12-20)</option>
+                        <option value="Long (20-50)">Long (20-50)</option>
+                        <option value="Very long (50-100)">Very long (50-100)</option>
+                        <option value="Endless">Endless</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="prlist" class="form-label">Price:</label>
+                    <select id="prlist" th:field="*{pricing}" class="form-control">
+                        <option value="It's free!">It's free!</option>
+                        <option value="Worth the price">Worth the price</option>
+                        <option value="If it's on sale">If it's on sale</option>
+                        <option value="If you have some spare money left">If you have some spare money left</option>
+                        <option value="Not recommended">Not recommended</option>
+                        <option value="You could also just burn your money">You could also just burn your money</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="bulist" class="form-label">Bugs:</label>
+                    <select id="bulist" th:field="*{bugs}" class="form-control">
+                        <option value="Never heard of">Never heard of</option>
+                        <option value="Minor bugs">Minor bugs</option>
+                        <option value="Can get annoying">Can get annoying</option>
+                        <option value="The game itself is a big terrarium for bugs">The game itself is a big terrarium
+                            for bugs</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="ralist" class="form-label">Rating:</label>
+                    <select id="ralist" th:field="*{rating}" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+            </div>
+
+            <input type="hidden" th:field="*{game}" />
+            <input type="hidden" name="gameId" th:value="${review.game.gameId}" />
+
+            <div class="mt-3 mb-4">
+                <input type="submit" value="Submit" class="btn btn-success" />
+            </div>
+
+        </form>
+    </div>
 </body>
 
 </html>

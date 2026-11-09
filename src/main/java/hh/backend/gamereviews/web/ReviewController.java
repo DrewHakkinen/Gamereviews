@@ -30,17 +30,20 @@ public class ReviewController {
     @GetMapping("/reviewlist/{id}")
     public String showReviews(@PathVariable("id") Integer gameId, Model model) {
 
+        model.addAttribute("game", gameRepository.findById(gameId).orElseThrow());
         model.addAttribute("reviews", reviewRepository.findByGame_GameId(gameId));
 
         return "reviewlist"; // reviewlist.html
     }
 
     // Tyhjän palautelomakkeen muodostaminen
-    @GetMapping(value = "/newreview")
-    public String getNewReviewForm(Model model) {
+    @GetMapping(value = "/newreview/{id}")
+    public String getNewReviewForm(@PathVariable("id") Integer gameId, Model model) {
 
-        model.addAttribute("review", new Review()); // tyhjä palaute-olio
-        model.addAttribute("games", gameRepository.findAll());
+        Review review = new Review(); // tyhjä olio
+        review.setGame(gameRepository.findById(gameId).orElseThrow()); // pelin id talteen
+
+        model.addAttribute("review", review);
         return "addreview"; // addreview.html
     }
 
@@ -48,26 +51,19 @@ public class ReviewController {
     @PostMapping("/savereview")
     public String saveReview(@ModelAttribute Review review, Model model) {
         reviewRepository.save(review); // SQL INSERT
-        return "redirect:/reviewlist"; // endpoint
+        return "redirect:/reviewlist/" + review.getGame().getGameId(); // endpoint
     }
-
-    // pelikohtaisten palautteiden näyttö
-    // @RequestMapping(value = "/review/{id}", method = RequestMethod.GET)
-    // public String showCertainReviews(@PathVariable("id") Integer gameId, Model
-    // model) {
-
-    // model.addAttribute("game", gameRepository.findById(gameId).get());
-    // model.addAttribute("reviews", reviewRepository.findAll());
-    // return "reviewlist"; // reviewlist.html
-    // }
 
     // palautteen poisto
     @RequestMapping(value = "/deletereview/{id}", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteReview(@PathVariable("id") Integer reviewId, Model model) {
 
+        Review review = reviewRepository.findById(reviewId).orElseThrow();
+        Integer gameId = review.getGame().getGameId();
+
         reviewRepository.deleteById(reviewId); // SQL DELETE
-        return "redirect:/reviewlist"; // endpoint
+        return "redirect:/reviewlist/" + gameId; // endpoint
     }
 
 }

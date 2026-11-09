@@ -32,6 +32,7 @@
             <th>Genre</th>
             <th sec:authorize="hasAuthority('ADMIN')"> </th>
             <th></th>
+            <th></th>
         </tr>
 
         <tr th:each="game : ${games}">
@@ -53,7 +54,6 @@
     </table>
     <p sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-success" th:href="@{/newgame}">Add Game</a></p>
     <p><a class="btn btn-success" th:href="@{/genrelist}">See genres</a></p>
-    <p><a class="btn btn-success" th:href="@{/reviewlist}">See reviews</a></p>
 </body>
 
 </html>

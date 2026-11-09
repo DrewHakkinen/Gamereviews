@@ -63,6 +63,18 @@ public class GamereviewsApplication {
 					"Nothing to grind", "Lovely", "Not bad duration (12-20 hours)", "Worth the price",
 					"Can get annoying", "Adults", 10, gameRepository.findByTitle("Mafia II").get(0));
 			reviewRepository.save(review1);
+			Review review2 = new Review("Good", "Good", "Very good", "Potato", "Easy to learn / hard to master",
+					"You'll need a second life for grinding", "Average", "Endless", "Worth the price",
+					"Never heard of", "All", 10, gameRepository.findByTitle("Stardew Valley").get(0));
+			reviewRepository.save(review2);
+			Review review3 = new Review("Decent", "Very good", "Not too bad", "Potato", "Significant brain usage",
+					"Nothing to grind", "Good", "Long (20-50 hours)", "Worth the price",
+					"Never heard of", "All", 7, gameRepository.findByTitle("Inscryption").get(0));
+			reviewRepository.save(review3);
+			Review review4 = new Review("Decent", "Good", "Very good", "Decent", "Easy",
+					"Average grind level", "Lovely", "Long (20-50 hours)", "If it's on sale",
+					"Minor bugs", "Adults", 8, gameRepository.findByTitle("GTA IV").get(0));
+			reviewRepository.save(review4);
 
 			log.info("Save sample users");
 			// Käyttäjät
