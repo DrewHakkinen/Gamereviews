@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Review {
@@ -31,7 +31,7 @@ public class Review {
     private String audience;
     private Integer rating;
 
-    @ManyToOne()
+    @ManyToMany()
     // @JsonIgnoreProperties
     @JsonIgnoreProperties("review")
     private List<Game> games;

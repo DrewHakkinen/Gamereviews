@@ -24,7 +24,7 @@
             </td>
         </tr>
     </table>
-    <p><a class="btn btn-success" th:href="@{/newgenre}">Add Genre</a></p>
+    <p sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-success" th:href="@{/newgenre}">Add Genre</a></p>
     <p><a class="btn btn-success" th:href="@{/gamelist}">See Games</a></p>
 </body>
 
